@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PowderLine Board Sizer v2.3</title>
+<style>
+ body{font-family:Segoe UI,Arial,sans-serif;background:#0f1b2b;color:#e8eef6;display:flex;justify-content:center;padding:40px 16px}
+ .card{background:#17283f;border-radius:14px;padding:28px;max-width:420px;width:100%;box-shadow:0 8px 30px #0006}
+ h1{margin:0 0 4px;font-size:22px} .sub{color:#8fa6c2;font-size:13px;margin-bottom:20px}
+ label{display:block;margin:14px 0 6px;font-size:14px;color:#b9cbe0}
+ input,select{width:100%;box-sizing:border-box;padding:10px;border-radius:8px;border:1px solid #2c4566;background:#0f1b2b;color:#e8eef6;font-size:15px}
+ .row{display:flex;gap:8px} .row select{width:90px}
+ button{margin-top:20px;width:100%;padding:12px;border:0;border-radius:8px;background:#3d8bfd;color:#fff;font-size:16px;cursor:pointer}
+ #out{margin-top:20px;padding:14px;border-radius:8px;background:#0f1b2b;min-height:22px;font-size:16px}
+ .err{color:#ff7b7b}
+</style></head><body><div class="card">
+<h1>🏂 PowderLine Board Sizer</h1><div class="sub">Version 2.3 — find your board length</div>
+<label>Height (cm)</label><input id="h" type="number" placeholder="e.g. 178">
+<label>Weight</label><div class="row"><input id="w" type="number" placeholder="e.g. 75"><select id="wu"><option value="kg">kg</option><option value="lb">lb</option></select></div>
+<label>Riding style</label><select id="s"><option value="all">All-mountain</option><option value="free">Freestyle / park</option><option value="powder">Powder</option></select>
+<label>Boot size (US men's)</label><input id="b" type="number" step="0.5" placeholder="e.g. 10.5">
+<button id="go">Find my board</button><div id="out"></div></div>
+<script>
+document.getElementById('go').onclick = function(){
+  const out = document.getElementById('out');
+  const h = parseFloat(document.getElementById('h').value);
+  let w = parseFloat(document.getElementById('w').value);
+  const unit = document.getElementById('wu').value;
+  const style = document.getElementById('s').value;
+  const boot = parseFloat(document.getElementById('b').value);
+  if (unit === 'lb') w = w / 2;
+  if (isNaN(h) || h < 120 || h >= 220) { out.innerHTML = '<span class="err">Height must be between 120 and 220 cm.</span>'; return; }
+  if (w < 30 || w > 150) { out.innerHTML = '<span class="err">Weight must be between 30 and 150 kg.</span>'; return; }
+  let len = h * 0.88;
+  if (w > 90) len += 3; else if (w < 55) len -= 3;
+  if (style === 'free') len -= 2; else if (style === 'powder') len += 2;
+  len = Math.round(len);
+  let msg = 'Recommended length: <b>' + len + ' cm</b>';
+  if (boot > 11) msg += '<br>👟 Get a <b>WIDE</b> board for your boot size.';
+  out.innerHTML = msg;
+};
+</script></body></html>
