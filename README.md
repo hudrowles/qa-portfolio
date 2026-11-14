@@ -40,7 +40,7 @@ pytest
 AI (Claude) helped write the test code, the practice app, and BUG-002, used openly, the way AI-assisted QA teams work. My part: working out and verifying expected results against the spec, triaging failures (real bug or bad test?), writing BUG-001, and reviewing everything before it ships.
 
 ## TypeScript version (in progress)
-`ts-tests/` has the same tests being converted to TypeScript (`@playwright/test`), because many QA teams use TypeScript. The first test was converted with AI help and walked through line by line; the rest I am converting myself. Run with `cd ts-tests && npm install && npx playwright test`.
+`ts-tests/` has the same tests being converted to TypeScript (`@playwright/test`), because many QA teams use TypeScript. Tests are converted with AI help; I walk through each one line by line and check the expected values against the spec. Run with `cd ts-tests && npm install && npx playwright test`.
 
 ## Contact
 Hudson Rowles, Environmental Engineering student at Montana State University. [LinkedIn](https://www.linkedin.com/in/hudson-rowles-a5b85844b/)
