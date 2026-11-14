@@ -38,3 +38,6 @@ pytest
 
 ## How I used AI
 AI (Claude) helped write the test code, the practice app, and BUG-002, used openly, the way AI-assisted QA teams work. My part: working out and verifying expected results against the spec, triaging failures (real bug or bad test?), writing BUG-001, and reviewing everything before it ships.
+
+## Contact
+Hudson Rowles, Environmental Engineering student at Montana State University. [LinkedIn](https://www.linkedin.com/in/hudson-rowles-a5b85844b/)
