@@ -24,3 +24,13 @@ test('light rider gets shorter board', async ({ page }) => {
   await page.click('#go');
   await expect(page.locator('#out')).toContainText('154 cm');  // 157 - 3
 });
+
+// Spec #3: Freestyle is 2 cm shorter -> 156.6 - 2 = 154.6 -> 155 cm
+test('freestyle is 2cm shorter', async ({ page }) => {
+  await page.goto(APP);
+  await page.fill('#h', '178');
+  await page.fill('#w', '75');
+  await page.selectOption('#s', 'free');                       // pick Freestyle
+  await page.click('#go');
+  await expect(page.locator('#out')).toContainText('155 cm');  // 156.6 - 2, rounded
+});
